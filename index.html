@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html ng-app="myResumeApp">
 <!-- Compiled and minified CSS -->
-<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 <!-- Compiled and minified JavaScript -->
   <!--script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script-->
 
 <!-- Angularjs -->
-<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script>
 
 
 <body ng-controller="myResumeCtrl">
 <div id="cv">
-	<div class="mainDetails">
-		<div id="headshot" class="quickFade">
-<!-- 			<img src="headshot.jpg" alt="Alan Smith" />
- -->		</div>
+	<div class="container">
 		
 		<div id="name">
 			<h1 class="quickFade delayTwo">{{ user.name }}</h1>
-			<h2 class="quickFade delayThree">Job Title</h2>
+			<h2 class="quickFade delayThree">{{ user.jobtitle }}</h2>
 		</div>
 		
 		<div id="contactDetails" class="quickFade delayFour">
@@ -31,7 +31,7 @@
 		<div class="clear"></div>
 	</div>
 	
-	<div id="mainArea" class="quickFade delayFive">
+	<div id="mainArea" class="container">
 		<section>
 			<article>
 				<div class="sectionTitle">
@@ -51,23 +51,9 @@
 				<h1>Work Experience</h1>
 			</div>
 			
-			<div class="sectionContent">
-				<article>
-					<h2>Job Title at Company</h2>
-					<p class="subDetails">April 2011 - Present</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
-				</article>
-				
-				<article>
-					<h2>Job Title at Company</h2>
-					<p class="subDetails">Janruary 2007 - March 2011</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
-				</article>
-				
-				<article>
-					<h2>Job Title at Company</h2>
-					<p class="subDetails">October 2004 - December 2006</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
+			<div class="sectionContent" ng-controller="jobDescController">
+				<article  ng-repeat="job in jobs">
+					<job-desc info="job"></job-desc>
 				</article>
 			</div>
 			<div class="clear"></div>
@@ -127,8 +113,10 @@
 
 
 
-<script src="js/myResumeApp.js"></script>
-<script src="js/controllers/myResumeCtrl.js"></script>
+<script src="http://localhost:8080/js/myResumeApp.js"></script>
+<script src="http://localhost:8080/js/controllers/myResumeCtrl.js"></script>
+<script src="http://localhost:8080/js/directives/jobDesc.js"></script>
+
 
 </body>
 </html>
