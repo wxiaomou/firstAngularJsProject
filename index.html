@@ -1,120 +1,124 @@
 <!DOCTYPE html>
 <html ng-app="myResumeApp">
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Compiled and minified JavaScript -->
-  <!--script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script-->
+<style type="text/css">
+header {
+    /*position: absolute;*/
+    text-align: center;
+    width: 100%;
+    top: 0;
+    /*background-position: center;*/
+    color: green;
+}
 
-<!-- Angularjs -->
-<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script>
+.header-content {
+    position: relative;
+    text-align: center;
+    padding: 100px 15px 100px;
+    width: 100%;
+}
 
+.forbiddencity-bg {
+    background-image: url("http://localhost:8080/src/img/forbiddencity.jpg");
+    background-repeat:no-repeat;
+    min-height:100%;
+    background-size:cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+</style>
 
 <body ng-controller="myResumeCtrl">
-<div id="cv">
-	<div class="container">
-		
-		<div id="name">
-			<h1 class="quickFade delayTwo">{{ user.name }}</h1>
-			<h2 class="quickFade delayThree">{{ user.jobtitle }}</h2>
+<div style="padding: 0">
+<header id="cv" class="forbiddencity-bg">
+	<div>	
+		<div id="name" class="header-content">
+			<h1 class="header-content-inner">{{ user.name }}'s Resume</h1>
+			<h2 class="header-content-inner">{{ user.jobtitle }}</h2>
 		</div>
 		
-		<div id="contactDetails" class="quickFade delayFour">
-			<ul>
-				<li>e: <a href="mailto:joe@bloggs.com" target="_blank">{{ user.email }}</a></li>
-				<li>w: <a href="http://www.bloggs.com">www.bloggs.com</a></li>
-			</ul>
-		</div>
-		<div class="clear"></div>
+		<section id="contact">
+			<div id="contactDetails" class="container" style="color: blue">
+                <h2 class="section-heading">Contact</h2>
+					<div class="container">email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></div>
+					<div class="container">website: <a href="http://www.bloggs.com">www.bloggs.com</a></div>
+		    </div>
+	    </section>
 	</div>
-	
-	<div id="mainArea" class="container">
+</header>
+<section> 
+	<div id="mainArea">
 		<section>
 			<article>
-				<div class="sectionTitle">
+				<div>
 					<h1>Personal Profile</h1>
 				</div>
 				
-				<div class="sectionContent">
+				<div>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dolor metus, interdum at scelerisque in, porta at lacus. Maecenas dapibus luctus cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
 				</div>
 			</article>
-			<div class="clear"></div>
 		</section>
 		
 		
 		<section>
-			<div class="sectionTitle">
+			<div>
 				<h1>Work Experience</h1>
 			</div>
 			
-			<div class="sectionContent" ng-controller="jobDescController">
+			<div ng-controller="jobDescController">
 				<article  ng-repeat="job in jobs">
 					<job-desc info="job"></job-desc>
 				</article>
 			</div>
-			<div class="clear"></div>
+			<div></div>
 		</section>
 		
 		
 		<section>
-			<div class="sectionTitle">
+			<div>
 				<h1>Key Skills</h1>
 			</div>
 			
-			<div class="sectionContent">
-				<ul class="keySkills">
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
+			<div ng-repeat="skill in skills">
+				<ul >
+					<li>{{ skill }}</li>
 				</ul>
 			</div>
-			<div class="clear"></div>
 		</section>
 		
-		
-		<section>
-			<div class="sectionTitle">
+		<section ng-controller="eduController">
+			<div>
 				<h1>Education</h1>
 			</div>
 			
-			<div class="sectionContent">
-				<article>
-					<h2>College/University</h2>
-					<p class="subDetails">Qualification</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
-				</article>
-				
-				<article>
-					<h2>College/University</h2>
-					<p class="subDetails">Qualification</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
-				</article>
+			<div ng-repeat="school in schools">
+				<education info="school"></education>
 			</div>
-			<div class="clear"></div>
 		</section>
 		
 	</div>
+</section>
 </div>
 
+<!-- Compiled and minified CSS -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/api-check/dist/api-check.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-formly/dist/formly.min.js"></script>
+<script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
 
-
-
-
-</div>
-
-
+<!-- Angularjs -->
+<!-- <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script> -->
 
 <script src="http://localhost:8080/js/myResumeApp.js"></script>
 <script src="http://localhost:8080/js/controllers/myResumeCtrl.js"></script>
+<script src="http://localhost:8080/js/directives/education.js"></script>
 <script src="http://localhost:8080/js/directives/jobDesc.js"></script>
 
 
