@@ -4,122 +4,123 @@
 <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style type="text/css">
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	width: 100%;
+}
 header {
-    /*position: absolute;*/
+    position: relative;
     text-align: center;
     width: 100%;
     top: 0;
-    /*background-position: center;*/
     color: green;
-}
-
-.header-content {
-    position: relative;
-    text-align: center;
-    padding: 100px 15px 100px;
-    width: 100%;
-}
-
-.forbiddencity-bg {
+    min-height: 100%;
     background-image: url("http://localhost:8080/src/img/forbiddencity.jpg");
-    background-repeat:no-repeat;
-    min-height:100%;
-    background-size:cover;
+	background-size:cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+
 }
+
+.header-content {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    padding: 100px 15px 100px;
+    width: 100%;
+    
+}
+
 </style>
 
 <body ng-controller="myResumeCtrl">
-<div style="padding: 0">
-<header id="cv" class="forbiddencity-bg">
-	<div>	
+	<header id="cv" class="forbiddencity-bg">
 		<div id="name" class="header-content">
 			<h1 class="header-content-inner">{{ user.name }}'s Resume</h1>
 			<h2 class="header-content-inner">{{ user.jobtitle }}</h2>
+			<section id="contact">
+				<div id="contactDetails" class="container" style="color: blue">
+	                <h2 class="section-heading">Contact</h2>
+						<div class="container">email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></div>
+						<div class="container">website: <a href="http://www.bloggs.com">www.bloggs.com</a></div>
+			    </div>
+		    </section>
 		</div>
-		
-		<section id="contact">
-			<div id="contactDetails" class="container" style="color: blue">
-                <h2 class="section-heading">Contact</h2>
-					<div class="container">email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></div>
-					<div class="container">website: <a href="http://www.bloggs.com">www.bloggs.com</a></div>
-		    </div>
-	    </section>
-	</div>
-</header>
-<section> 
-	<div id="mainArea">
-		<section>
-			<article>
+	</header>
+	<section> 
+		<div id="mainArea">
+			<section>
+				<article>
+					<div>
+						<h1>Personal Profile</h1>
+					</div>
+					
+					<div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dolor metus, interdum at scelerisque in, porta at lacus. Maecenas dapibus luctus cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
+					</div>
+				</article>
+			</section>
+			
+			
+			<section>
 				<div>
-					<h1>Personal Profile</h1>
+					<h1>Work Experience</h1>
 				</div>
 				
-				<div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dolor metus, interdum at scelerisque in, porta at lacus. Maecenas dapibus luctus cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
+				<div ng-controller="jobDescController">
+					<article  ng-repeat="job in jobs">
+						<job-desc info="job"></job-desc>
+					</article>
 				</div>
-			</article>
-		</section>
-		
-		
-		<section>
-			<div>
-				<h1>Work Experience</h1>
-			</div>
+				<div></div>
+			</section>
 			
-			<div ng-controller="jobDescController">
-				<article  ng-repeat="job in jobs">
-					<job-desc info="job"></job-desc>
-				</article>
-			</div>
-			<div></div>
-		</section>
-		
-		
-		<section>
-			<div>
-				<h1>Key Skills</h1>
-			</div>
 			
-			<div ng-repeat="skill in skills">
-				<ul >
-					<li>{{ skill }}</li>
-				</ul>
-			</div>
-		</section>
-		
-		<section ng-controller="eduController">
-			<div>
-				<h1>Education</h1>
-			</div>
+			<section>
+				<div>
+					<h1>Key Skills</h1>
+				</div>
+				
+				<div ng-repeat="skill in skills">
+					<ul >
+						<li>{{ skill }}</li>
+					</ul>
+				</div>
+			</section>
 			
-			<div ng-repeat="school in schools">
-				<education info="school"></education>
-			</div>
-		</section>
-		
-	</div>
-</section>
-</div>
+			<section ng-controller="eduController">
+				<div>
+					<h1>Education</h1>
+				</div>
+				
+				<div ng-repeat="school in schools">
+					<education info="school"></education>
+				</div>
+			</section>
+			
+		</div>
+	</section>
 
-<!-- Compiled and minified CSS -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="bower_components/api-check/dist/api-check.min.js"></script>
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-formly/dist/formly.min.js"></script>
-<script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
+	<!-- Compiled and minified CSS -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/api-check/dist/api-check.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-formly/dist/formly.min.js"></script>
+	<script src="bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.min.js"></script>
 
-<!-- Angularjs -->
-<!-- <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script> -->
+	<!-- Angularjs -->
+	<!-- <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script> -->
 
-<script src="http://localhost:8080/js/myResumeApp.js"></script>
-<script src="http://localhost:8080/js/controllers/myResumeCtrl.js"></script>
-<script src="http://localhost:8080/js/directives/education.js"></script>
-<script src="http://localhost:8080/js/directives/jobDesc.js"></script>
+	<script src="http://localhost:8080/js/myResumeApp.js"></script>
+	<script src="http://localhost:8080/js/controllers/myResumeCtrl.js"></script>
+	<script src="http://localhost:8080/js/directives/education.js"></script>
+	<script src="http://localhost:8080/js/directives/jobDesc.js"></script>
 
 
 </body>
